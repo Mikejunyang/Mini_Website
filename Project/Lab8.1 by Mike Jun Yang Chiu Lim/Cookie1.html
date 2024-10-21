@@ -1,0 +1,191 @@
+<html>
+<!-- Mike Jun Yang, Chiu Lim
+Description: Lab 8.1
+Date: 11/07/2023 -->
+<head>
+  <script type="text/javascript">
+    function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires="+d.toUTCString();
+      document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0; i<ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1);
+          if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+      }
+      return "";
+    }
+
+  function checkCookie(num) {
+      var c1 = "cprod" + num;
+      var c2 = "cprice" + num;
+      var c3 = "cqty" + num;
+      var qty = document.getElementById("Qty" + num).value;
+      if(parseInt(qty)>0 && parseInt(qty)<100){
+        var product1 = getCookie(c1);
+        if (product1 == ""){
+            product1 = document.getElementById("Name" + num).innerHTML;
+            if (product1 != "" && product1 != null) {
+                setCookie(c1, product1, 5);
+                alert("Cookie " + c1 + " created");
+            }
+        }
+
+        var price1 = getCookie(c2);
+        if (price1 == "") {
+            price1 = document.getElementById("Price" + num).innerHTML;
+            if (price1 != "" && price1 != null) {
+                setCookie(c2, price1, 5);
+                alert("Cookie " + c2 + " created");
+            }
+        }
+
+        var qty1 = getCookie(c3);
+        if (qty1 == "") {
+              setCookie(c3, qty, 5);
+              let finalCookie = (document.cookie).slice(53);
+              alert("Cookie " + c3 + " created");
+              alert("Cookie(s):\n"+ finalCookie + "\n");
+
+          window.open("Cookie2.html", "_self",true);
+          //  }
+        }
+        else{
+          if(qty != qty1){
+            setCookie(c3, qty, 5);
+            let finalCookie = (document.cookie).slice(53);
+            alert("Cookie " + c3 + " created");
+            alert("Cookie(s):\n"+ finalCookie + "\n");
+
+            window.open("Cookie2.html", "_self",true);
+          }
+          else{
+            alert("Cookie(s) exist\n Delete it first, or change the quantity\n"+document.cookie);
+          }
+        }
+
+      }
+      else{
+        alert("Enter a valid value for quantity for " + document.getElementById("Name" + num).innerHTML);
+      }
+    }
+
+  function deleteCookie(num) {
+    var c1 = "cprod" + num;
+    var c2 = "cprice" + num;
+    var c3 = "cqty" + num;
+    var product1 = getCookie(c1);
+    var price1 = getCookie(c2);
+    var qty1 = getCookie(c3);
+      if (product1 == "") {
+          alert("Cookie "+ c1 + " doesn't exist");
+      } else {
+          if (product1 != "" && product1 != null) {
+              setCookie(c1, "", -10);
+        alert("Cookie " + c1 + "deleted.");
+          }
+      }
+      if (price1 == "") {
+          alert("Cookie "+ c2 + " doesn't exist");
+      } else {
+          if (price1 != "" && price1 != null) {
+              setCookie(c2, "", -10);
+        alert("Cookie " + c2 + "deleted.");
+          }
+      }
+      if (qty1 == "") {
+          alert("Cookie "+ c3 + " doesn't exist");
+      } else {
+          if (qty1 != "" && qty1 != null) {
+              setCookie(c3, "", -10);
+        alert("Cookie " + c3 + "deleted.");
+          }
+      }
+  }
+  </script>
+
+  <style>
+    td, b, div{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="width:98%; border:1px solid black; padding:5px; float:left; margin-bottom: 15px;">
+    <div style="width:31%; min-width:200px; height:190px; float:left; background-color:red; padding:10px; text-align: center;">
+      <table style="width: 100%;">
+        <tr>
+          <td ><b id="Name1">Boots - Black</b></td>
+        </tr>
+        <tr>
+          <td><p>ID: <span id="Id1">123456</span></p></td>
+        </tr>
+        <tr>
+          <td colspan="2" ><img id="Img1" src="Prod1.jpg" alt="" width="160" /></td>
+        </tr>
+      </table>
+    </div>
+    <div style="width:31%; min-width:200px; height:190px; float:left; background-color:yellow; padding:10px;">
+      <br>Description:<br><br>
+      <textarea name="message" rows="5" cols="24" readonly="readonly">Mens Safety Boots. 
+        Size: 11 
+        Color: black
+        Stock: up to 99
+      </textarea><br><br>
+      <b>Price: <span id="Price1">89.95</span>$</b>
+    </div>
+    <div style="width:31%; min-width:200px; height:190px; float:left; background-color:cyan; padding:10px;">
+      <br><br><h3>Quantity: </h3>
+      <input type="number" value="0" id="Qty1" min="1" max="19"/>
+    </div>
+
+    <br>
+
+    <div style="width:31%; min-width:200px; height:200px; float:left; background-color:red; padding:10px; text-align: center;">
+      <table style="width: 100%;">
+        <tr>
+          <td ><b id="Name2">Boots - Brown</b></td>
+        </tr>
+        <tr>
+          <td><p>ID: <span id="Id2">789123</span></p></td>
+        </tr>
+        <tr>
+          <td colspan="2" ><img id="Img2" src="Prod2.jpg" alt="" width="160" /></td>
+        </tr>
+      </table>
+    </div>
+    <div style="width:31%; min-width:200px; height:200px; float:left; background-color:yellow; padding:10px;">
+      <br>Description:<br><br>
+      <textarea name="message" rows="5" cols="24" readonly="readonly">Mens Safety Boots. 
+        Size: 11 
+        Color: brown
+        Stock: up to 99
+      </textarea><br><br>
+      <b>Price: <span id="Price2">79.95</span>$</b>
+    </div>
+    <div style="width:31%; min-width:200px; height:200px; float:left; background-color:cyan; padding:10px;">
+      <br><br><h3>Quantity: </h3>
+      <input type="number" value="0" id="Qty2" min="1" max="19"/>
+    </div>
+  </div>  
+
+  
+  <p style="margin-top: 5px; padding-top: 5px;">
+    <br><br>
+    <input type="button" onclick="checkCookie(1); checkCookie(2)" value="Check Out" style="margin-bottom: 5px;">&nbsp;<br />
+    <button type="button" onclick="deleteCookie(1); deleteCookie(2)">Delete Cookie(s)</button>
+  </p>
+  <br><br>
+  
+
+  
+</body>
+</html>
