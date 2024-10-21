@@ -1,0 +1,218 @@
+<html>
+<!-- Mike Jun Yang, Chiu Lim
+Description: Lab 8.1
+Date: 11/07/2023 -->
+<head>
+    <script type="text/javascript">
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+    function checkCookie() {
+    var product1 = getCookie("");
+    if (product1 != ""){
+            document.getElementById("").innerHTML = product1;
+    }
+
+        var price1 = getCookie("");
+        if (price1 != "") {
+            document.getElementById("").innerHTML = price1;
+        }
+
+        var qty1 = getCookie("");
+        if (qty1 != "") {
+            document.getElementById("").innerHTML = qty1;
+            document.getElementById("").innerHTML = qty1*price1;
+        }
+    }
+
+
+    function deleteCookie(num) {
+        var c1 = "cprod" + num;
+        var c2 = "cprice" + num;
+        var c3 = "cqty" + num;
+        var product1 = getCookie(c1);
+        var price1 = getCookie(c2);
+        var qty1 = getCookie(c3);
+        if (product1 == "") {
+            alert("Cookie prod" + num + " doesn't exist");
+        } else {
+            if (product1 != "" && product1 != null) {
+                setCookie(c1, "", -10);
+                alert("Cookie prod" + num + " deleted.");
+            }
+        }
+        if (price1 == "") {
+            alert("Cookie price" + num + " exist");
+        } else {
+            if (price1 != "" && price1 != null) {
+                setCookie(c2, "", -10);
+                alert("Cookie price" + num + " deleted.");
+            }
+        }
+        if (qty1 == "") {
+            alert("Cookie qty" + num + " doesn't exist");
+        } else {
+            if (qty1 != "" && qty1 != null) {
+                setCookie(c3, "", -10);
+                alert("Cookie qty" + num + " deleted.");
+            }
+        }
+    }
+
+    function display(){
+        var product1 = getCookie("cprod1");
+        var price1 = getCookie("cprice1");
+        var qty1 = getCookie("cqty1");
+        var subtotal1 = (price1*qty1);
+        var t1 = (subtotal1 * 0.05);
+        var t2 = (subtotal1 * 0.09975);
+        let total1 = parseFloat(t1 + t2 + subtotal1);
+
+        document.getElementById("Name1").innerHTML = product1;
+        document.getElementById("Price1").innerHTML = price1;
+        document.getElementById("Qty1").innerHTML = qty1;
+        document.getElementById("Subtotal1").innerHTML = subtotal1.toFixed(2);
+        document.getElementById("Total1").innerHTML = total1.toFixed(2);
+
+        var product2 = getCookie("cprod2");
+        var price2 = getCookie("cprice2");
+        var qty2 = getCookie("cqty2");
+        var subtotal2 = (price2*qty2);
+        var t3 = (subtotal2 * 0.05);
+        var t4 = (subtotal2 * 0.09975);
+        let total2 = parseFloat(t3 + t4 + subtotal2);
+
+        document.getElementById("Name2").innerHTML = product2;
+        document.getElementById("Price2").innerHTML = price2;
+        document.getElementById("Qty2").innerHTML = qty2;
+        document.getElementById("Subtotal2").innerHTML = subtotal2.toFixed(2);
+        document.getElementById("Total2").innerHTML = total2.toFixed(2);
+
+        var totalDef = (total1 + total2).toFixed(2);
+        document.getElementById("finalTot").innerHTML = totalDef;
+    }
+    </script>
+
+    <style>
+        td{
+            border-width: 2px;
+            border-right-style: solid;
+            padding-right: 9px;
+            text-align: center;
+        }
+        th{
+            padding-left: 10px;
+            padding-right: 10px;
+            border-style:solid;
+            border-width: 2px;
+        }
+
+        .td-left{
+            border-width: 2px;
+            border-left-style: solid;
+        }
+    </style>
+</head>
+<body onload="display()">
+    <div>
+        <div style="width:4%;float:left;background-color:red;padding:10px; height: 90px;"></div>
+        <div style="width:84%;float:left;background-color:yellow;padding:7px;">
+            <table>
+                <tr>
+                    <th>
+                        <p>Product Name:<p>
+                    </th>
+                    <th>
+                        <p>Price:<p>
+                    </th>
+                    <th>
+                        <p>Quantity:<p>
+                    </th>
+                    <th>
+                        <p>Subtotal:<p>
+                    </th>
+                    <th>
+                        <p></p>Total:<p>
+                    </th>
+                </tr>
+                <tr>
+                    <td class="td-left">
+                        <p><span id="Name1"></span><p>
+                    </td>
+                    <td>
+                        <p><span id="Price1"></span>$<p>
+                    </td>
+                    <td>
+                        <p><span id="Qty1"></span><p>
+                    </td>
+                    <td>
+                        <p><span id="Subtotal1"></span>$<p>
+                    </td>
+                    <td>
+                        <p><span id="Total1"></span>$<p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-left">
+                        <p><span id="Name2"></span><p>
+                    </td>
+                    <td>
+                        <p><span id="Price2"></span>$<p>
+                    </td>
+                    <td>
+                        <p><span id="Qty2"></span><p>
+                    </td>
+                    <td>
+                        <p><span id="Subtotal2"></span>$<p>
+                    </td>
+                    <td>
+                        <p><span id="Total2"></span>$<p>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="td-left">
+                        <p><span>Total</span><p>
+                    </th>
+                    <th>
+                        <p><span>-</span><p>
+                    </th>
+                    <th>
+                        <p><span>-</span><p>
+                    </th>
+                    <th>
+                        <p><span>-</span><p>
+                    </th>
+                    <th>
+                        <p><span id="finalTot"></span>$<p>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <div style="width:4%;float:left;background-color:cyan;padding:10px; height: 90px;"></div>
+    </div>
+
+    
+    <div style="margin-top: 20px; float: left;">
+        <button type="button" onclick="deleteCookie(1); deleteCookie(2); display()">Delete Cookie(s)</button>&nbsp;
+    </div>
+
+    <a href="Cookie1.html" style="float: left;"><h2>Return</h2></a>
+
+</body>
+</html>
