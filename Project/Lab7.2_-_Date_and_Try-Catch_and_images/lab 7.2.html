@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+     <!-- Mike Jun Yang, Chiu Lim
+     Description: JS/Date/Try & Catch/RegExp
+	   Date: 28/06/2023                 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+   <title>Lab 7.2 [Date and Try&Catch RegExp and images]</title>
+
+   <script type="text/javascript" >
+    let tot; //global variable
+   	function displayAmount ()
+		{
+      displayMoney(0);
+			let price = document.getElementById("price").value;
+			try
+				{
+					if(price == "") throw "empty";
+					if(isNaN(price)) throw "not a number";
+					if(price < 3) throw "too low (3-230)";
+					if(price > 230) throw "too high (3-230)";
+          /* RegExp */
+					if(/^\d+(\.\d{0,2})?$/.test(price) == false)
+					{throw "not 1-3 digits with one or two decimals";}
+					else{
+					price = Number(price);
+					/* check for the values */
+					}
+				const gst = 0.05;
+				const qst = 0.09975;
+				var priceGst = (gst * price);
+				var priceQst = (qst * price);
+				var total = price + priceGst + priceQst;
+				tot = total.toFixed(2);
+				let price2 = price.toFixed(2);
+				}
+			catch (err)
+				{
+					alert("Input is " + err);
+				}
+			finally
+				{
+					var text = "<table>";
+					text += "<tr><td colspan='2'><div class='thead'><b>Example</b></div></td></tr>";
+					text += "<tr><td colspan='2'>You sell a taxable good for $" + price.toFixed(2) +". Taxes are calculated as follows:</td></tr>";
+					text += "<tr><td>Selling Price</td><td><span class='right'>$" + price.toFixed(2) + "</span></td></tr>";
+					text += "<tr><td>GST ($"+ price + " * 5%)</td><td><span class='right'>$" + priceGst.toFixed(2) + "</span></td></tr>";
+					text += "<tr><td>QST ($"+ price + " * 9.975%)</td><td><span class='right'>$" + priceQst.toFixed(2) + "</span></td></tr>";
+					text += "<tr><td><b>Total</b></td><td><span class='right'>$" + tot + "</span></td></tr>";
+					//text += "<tr><td><a href='lab_7.3.html' class='button'>Calculate banknotes and coins</a><td></tr>"
+					text += "</table>";
+					document.getElementById("displayTable").innerHTML = text;
+				}
+		}
+
+	  function displayMoney(getAmount)
+	  {
+		var amount = getAmount ;// .toFixed(2) ;
+		document.getElementById("display").innerHTML = amount;
+
+		alert("100$= "+amount);
+
+		var	val100 = parseInt(amount/100);
+
+		if (val100>0)
+		{
+			document.getElementById("bn100").src = "img/100$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn100").src = "";
+		}
+
+		document.getElementById("hun").innerHTML = val100;//Math.floor(val100);
+		document.getElementById("totalHun").innerHTML = "$" + (val100 * 100);//(Math.floor(val100)*100);
+
+		amount = (amount - val100*100).toFixed(2);
+
+		//alert("50$= "+amount);
+
+		var val50 = parseInt(amount/50);
+
+		if (val50>0)
+		{
+			document.getElementById("bn50").src = "img/50$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn50").src = "";
+		}
+
+		document.getElementById("fif").innerHTML = val50;
+		document.getElementById("totalFifty").innerHTML = "$" + (val50 * 50);
+
+		amount = (amount - val50*50).toFixed(2);
+
+		//alert("20$= "+amount);
+
+		var val20 = parseInt(amount/20);
+
+		if (val20>0)
+		{
+			document.getElementById("bn20").src = "img/20$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn20").src = "";
+		}
+
+		document.getElementById("twenty").innerHTML = val20;
+		document.getElementById("totalTwenty").innerHTML = "$" + (val20 * 20);
+
+		amount = (amount - val20*20).toFixed(2);
+
+		//alert("10$= "+amount);
+
+		var val10 = parseInt(amount/10);
+
+		if (val10>0)
+		{
+			document.getElementById("bn10").src = "img/10$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn10").src = "";
+		}
+
+		document.getElementById("ten").innerHTML = val10;
+		document.getElementById("totalTen").innerHTML = "$" + (val10 * 10);
+
+		amount = (amount - val10*10).toFixed(2);
+
+		//alert("5$= "+amount);
+
+		var val5 = parseInt(amount/5);
+
+		if (val5>0)
+		{
+			document.getElementById("bn05").src = "img/5$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn05").src = "";
+		}
+
+		document.getElementById("five").innerHTML = val5;
+		document.getElementById("totalFive").innerHTML = "$" + (val5 * 5);
+
+		amount = (amount - val5*5).toFixed(2);
+
+		//alert("2$= "+amount);
+
+		var val2 = parseInt(amount/2);
+
+		if (val2>0)
+		{
+			document.getElementById("bn02").src = "img/2$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn02").src = "";
+		}
+
+		document.getElementById("toon").innerHTML = val2;
+		document.getElementById("totalToon").innerHTML = "$" + (val2 * 2);
+
+		amount = (amount - val2*2).toFixed(2);
+
+		//alert("1$= "+amount);
+
+		var val1 = parseInt(amount/1);
+
+		if (val1>0)
+		{
+			document.getElementById("bn01").src = "img/1$.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn01").src = "";
+		}
+
+		document.getElementById("one").innerHTML = val1;
+		document.getElementById("totalOne").innerHTML = "$" + (val1 * 1);
+
+		amount = (amount - val1*1).toFixed(2);
+
+		//alert("25c= "+amount);
+
+		var val25c = parseInt(amount/0.25);
+
+		if (val25c>0)
+		{
+			document.getElementById("bn25c").src = "img/25c.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn25c").src = "";
+		}
+
+		document.getElementById("quarter").innerHTML = val25c;
+		document.getElementById("totalQuarter").innerHTML = "$" + (val25c * 0.25);
+
+		amount = (amount - val25c*0.25).toFixed(2);
+
+		//alert("10c= "+amount);
+
+		var val10c = parseInt(amount/0.10);
+
+		if (val10c>0)
+		{
+			document.getElementById("bn10c").src = "img/10c.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn10c").src = "";
+		}
+
+		document.getElementById("dime").innerHTML = val10c;
+		document.getElementById("totalDime").innerHTML = "$" + (val10c * 0.10);
+
+		amount = (amount - val10c*0.10).toFixed(2);
+
+		//alert("25c= "+amount);
+
+		var val5c = parseInt(amount/0.05);
+
+		if (val5c>0)
+		{
+			document.getElementById("bn5c").src = "img/5c.jpg";
+		}
+		else
+		{ 
+			document.getElementById("bn5c").src = "";
+		}
+
+		document.getElementById("nickel").innerHTML = val5c;
+		document.getElementById("totalNickel").innerHTML = "$" + (val5c * 0.05);
+
+		amount = (amount - val5c*0.05).toFixed(2);
+
+	  }
+	</script>
+
+   <style>
+ 	  	.header {
+		   margin: 30px;
+	   	}
+	   	.container {
+		   margin: auto;
+	   	}
+	   	table, td {
+		   border: 1px solid #e6e6e6;
+		   background-color: #cccccc;
+	   	}
+	   	.thead {
+		   border-top: 1px solid gray;
+	   	}
+	   	.right {float:right;}
+	   	.header {margin: 30px;}
+	   	.container {margin: auto;}
+	   	table, td {
+		   border: 1px solid #e6e6e6;
+		   background-color: #cccccc;
+	   	}
+	  	.thead {
+			border-top: 1px solid gray;
+		}
+   </style>
+ </head>
+ <body><!-- onload="hid()"-->
+	<div class="header">
+		<h2>Today Date: <span id="date"></span></h2>
+	</div>
+	<div class="container">
+		Input amount : <input type="text" name="price" id="price"/>
+		<button onclick="displayAmount()">Display Amount</button><br><br>
+		<div id="displayTable"><br><br>
+		</div><br>
+			<button onclick="displayMoney(tot);">Calculate banknotes and coins</button>
+	</div>
+
+		<div>
+		  <h3>Calculate banknotes and coins</h3>
+		</div>
+	<table>
+	<thead><tr><th>The total amount in CAD dollars: <span id="display"></span></th></tr>
+	</thead>
+	<tbody>
+	<tr>
+      <td id="hundred">100 dollars bills: <span id="hun"></span>
+	  <br> Amount: <span id="totalHun"></span>
+	  <br><img src="" id="bn100" /></td>
+      <td>Toonie: <span id="toon"></span></br> Amount: <span id="totalToon"></span>
+	  </br><img src="" id="bn02" /></td>
+    </tr>
+    <tr>
+      <td id="fifty">50 dollars bills: <span id="fif"></span>
+	  <br> Amount: <span id="totalFifty"></span>
+	  <br><img  src="" id="bn50" /></td>
+      <td>Loonies:<span id="one"></span><br> Amount: <span id="totalOne"></span>
+	  </br><img  src="" id="bn01" /></td>
+    </tr>
+	 <tr>
+      <td>20 dollars bills: <span id="twenty"></span><br> Amount: <span id="totalTwenty"></span>
+	  <br><img  src="" id="bn20" /></td>
+      <td>Quaters: <span id="quarter"></span></br> Amount: <span id="totalQuarter"></span>
+	  </br><img  src="" id="bn25c" /></td>
+    </tr>
+	 <tr>
+      <td>10 dollars bills:<span id="ten"></span><br> Amount: <span id="totalTen"></span>
+	  <br><img src="" id="bn10" /></td>
+      <td>Dimes: <span id="dime"></span></br> Amount: <span id="totalDime"></span>
+	  <br><img src="" id="bn10c" /></td>
+    </tr>
+	<tr>
+      <td>5 dollars bills: <span id="five"></span><br> Amount: <span id="totalFive"></span>
+	  <br><img src="" id="bn05" /></td>
+      <td>Nickels: <span id="nickel"></span></br> Amount: <span id="totalNickel"></span>
+	  <br><img src="" id="bn5c" /></td>
+    </tr>
+	</tbody>
+	</table>
+
+	<script>
+		var myDate = new Date();
+		document.getElementById("date").innerHTML = myDate.toDateString();
+	</script>
+</body>
+</html>
