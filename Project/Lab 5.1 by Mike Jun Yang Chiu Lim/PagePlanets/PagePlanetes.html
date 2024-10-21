@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <!-- Mike Jun Yang, Chiu Lim 
+    Description: Lab 5.1
+	Date: 16.06.23                 -->
+   <meta charset="UTF-8">
+   <title>Planets</title>
+   <link rel="stylesheet" type="text/css" href="./mystyle4.css"/>
+   <script type="text/javascript">
+    function setPlanet(PlanetName)
+	{
+	  document.getElementById("PName").value = PlanetName;
+	  checkPlanet();
+	}
+   
+    function checkPlanet()
+	{
+	  //arrays containing data for 3 planets
+	  var arrNames = ["sun", 
+                      "mercury", 
+                      "venus", 
+                      "earth", 
+                      "mars", 
+                      "jupiter", 
+                      "saturn", 
+                      "uranus", 
+                      "neptune", 
+                      "space"];
+
+	  var arrDias = ["1,390,000 Km", 
+                     "4,880 Km", 
+                     "12,103.6 Km", 
+                     "12,756.3 km", 
+                     "6,794 km", 
+                     "142,984 km (equatorial)", 
+                     "120,536 km (equatorial)", 
+                     "51,118 km (equatorial)", 
+                     "49,532 km (equatorial)", 
+                     "infinite km"];
+
+	  var arrDistances = ["Temperature: 5800 K (surface) 15,600,000 K (core)",
+	                      "Orbit: 57,910,000 km (0.38 AU) from Sun",
+	                      "Orbit: 108,200,000 km (0.72 AU) from Sun", 
+                          "orbit: 149,600,000 km (1.00 AU) from Sun", 
+                          "orbit: 227,940,000 km (1.52 AU) from Sun", 
+                          "orbit: 778,330,000 km (5.20 AU) from Sun", 
+                          "orbit: 1,429,400,000 km (9.54 AU) from Sun", 
+                          "orbit: 2,870,990,000 km (19.218 AU) from Sun", 
+                          "orbit: 4,504,000,000 km (30.06 AU) from Sun"];
+
+	  var arrImgs = ["./Img/Sun.jpg", 
+                     "./Img/Mercury.jpg", 
+                     "./Img/Venus.jpg", 
+                     "./Img/Earth.jpg", 
+                     "./Img/Mars.jpg", 
+                     "./Img/Jupiter.jpg", 
+                     "./Img/Saturn.jpg", 
+                     "./Img/Uranus.jpg", 
+                     "./Img/Neptune.jpg", 
+                     "./Img/Space.jpg"];
+	  
+      var result, nPlanet, imgPlanet;
+	  nPlanet = document.getElementById("PName").value.toLowerCase();
+	  
+	  var index = -1;
+	  
+        for (var i = 0; i < 10; i++) //using loop for the search
+	  {
+	    if (arrNames[i] == nPlanet)
+		{
+          index = i;
+          result = "Planet: "+arrNames[index].toUpperCase()+
+			       " having diameter of: "+arrDias[index]+
+                   " and "+arrDistances[index];
+		  imgPlanet = arrImgs[index];		  
+		}
+	  }
+	  
+	  if (index == -1)  //no planet name was found
+	  {
+		result = "Planet: inexistent having diameter of: 0 Km and 0 Km as distances from Sun!";
+		imgPlanet = "./Img/none.jpg";
+	  }
+	  
+	  /* //using switch for the search
+	  switch (nPlanet){
+	    case "sun" :
+			result = "Planet: "+arrNames[0].toUpperCase()+
+		" having diameter of: "+arrDias[0] + " and "+arrDistances[0];
+			imgPlanet = "./Img/Sun.jpg";
+            break;					 
+		case "mercury" :
+			result = "Planet: "+arrNames[1].toUpperCase()+
+		" having diameter of: "+arrDias[1] + " and "+arrDistances[1];
+			imgPlanet = "./Img/Mercury.jpg";
+            break;					 
+		case "venus" :
+			result = "Planet: "+arrNames[2].toUpperCase()+
+		" having diameter of: "+arrDias[2] + " and "+arrDistances[2];
+			imgPlanet = "./Img/venus.jpg";
+            break;					 
+		default :
+			result = "Planet: inexistent having diameter of: 0 Km and 0 Km as distances from Sun!";
+			imgPlanet = "./Img/none.jpg";
+			break;					 
+		}		
+		*/
+		document.getElementById("Res").innerHTML = result;
+		document.getElementById("Rimg").src = imgPlanet;	  
+	}
+   </script>
+ </head>
+ <body id="top">
+ 	<h1>Our solar system - The Planets</h1>
+ 	<div class="plan1" style="width:95%; border:1px solid red">
+ 		<div class="plan1">
+ 			<img src="./Img/planets.jpg" alt="Planets" usemap="#Planets" />
+ 			<map name="Planets">
+ 				<area shape="circle" coords="61,153,18"
+					   href="#" alt="Mercury" onclick="setPlanet('mercury');" />
+ 				<area shape="circle" coords="117,148,25"
+					   href="#" alt="Venus" onclick="setPlanet('venus');" />
+ 				<area shape="circle" coords="188,140,29"
+					   href="#" alt="Earth" onclick="setPlanet('earth');" />
+ 				<area shape="circle" coords="255,131,30"
+					   href="#" alt="Mars" onclick="setPlanet('mars');" />
+ 				<area shape="circle" coords="355,128,71"
+					   href="#" alt="Jupiter" onclick="setPlanet('jupiter')" />
+ 				<area shape="circle" coords="470,130,40"
+					   href="#" alt="Saturn" onclick="setPlanet('saturn')" />
+ 				<area shape="circle" coords="543,130,24"
+					   href="#" alt="Uranus" onclick="setPlanet('uranus')" />
+ 				<area shape="circle" coords="600,130,20"
+					   href="#" alt="Neptune" onclick="setPlanet('neptune')" />
+ 				<area shape="poly" coords="0,53,50,65,90,95,127,180,120,235,114,265,0,265"
+					   href="#" alt="Sun" onclick="setPlanet('sun');" />
+ 				<area shape="rect" coords="0,0,675,265"
+					   href="#" alt="Space" onclick="setPlanet('space');" />
+ 			</map>
+ 		</div>
+ 		<div class="plan1" style="width:95%; border:1px solid blue">
+ 			<form action="server_side.asp" method="post">
+ 				Enter the name of the planet: <input type="text" value="planet name" id="PName" />
+ 				<input type="button" value="Look up Planet" onclick="checkPlanet();" />
+ 				<p>Details: <span id="Res">?</span></p>
+ 				<img class="planet" src="./Img/none.jpg" alt="image place" id="Rimg" />
+ 			</form>
+ 		</div>
+ 	</div>
+    <div class="plan1" style="width:95%; border:1px solid white">
+        <div>
+            <br /><br />
+        </div>
+
+        <div class="row">
+            <h2><a name="Sun">Sun</a></h2>
+            <p>
+                Temperature: 5800 k (surface) 15,600,000 k (core)
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/SUN.JPG" alt="Sun" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 1,390,000 km
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Mercury">Mercury</a></h2>
+            <p>
+                Orbit: 57,910,000 km (0.38 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/MERCURY.JPG" alt="Mercury" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 4,880 km
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Venus">Venus</a></h2>
+            <p>
+                Orbit: 108,200,000 km (0.72 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/VENUS.JPG" alt="Venus" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 12,103.6 km
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Earth">Earth</a></h2>
+            <p>
+                Orbit: 149,600,000 km (1.00 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Earth.jpg" alt="Earth" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 12,756.3 km
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Mars">Mars</a></h2>
+            <p>
+                Orbit: 227,940,000 km (1.52 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Mars.jpg" alt="Mars" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 6,794 km
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Jupiter">Jupiter</a></h2>
+            <p>
+                Orbit: 778,330,000 km (5.20 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Jupiter.jpg" alt="Jupiter" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 142,984 km (equatorial)
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Saturn">Saturn</a></h2>
+            <p>
+                Orbit: 1,429,400,000 km (9.54 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Saturn.jpg" alt="Saturn" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 120,536 km (equatorial)
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Uranus">Uranus</a></h2>
+            <p>
+                Orbit: 2,870,990,000 km (19.218 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Uranus.jpg" alt="Uranus" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 51,118 km (equatorial)
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Neptune">Neptune</a></h2>
+            <p>
+                Orbit: 4,504,000,000 km (30.06 AU) from Sun
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Neptune.jpg" alt="Neptune" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: 49,532 km (equatorial)
+            </p>
+            <a href="#Top">Go to the top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+
+        <div class="row">
+            <h2><a name="Space">Space</a></h2>
+            <p>
+                Temperature: 0 K
+            </p>
+        </div>
+        <div class="row">
+            <img class="planet" src="./Img/Space.jpg" alt="Space" />
+        </div>
+        <div class="row">
+            <p>
+                Diameter: infinite km.
+            </p>
+            <a href="#Top">Go to the Top</a>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>
+                ...
+            </p>
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+ </body>
+</html>
