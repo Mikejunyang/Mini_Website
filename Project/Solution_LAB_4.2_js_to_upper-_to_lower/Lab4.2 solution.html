@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--Name:   Date:   Description:   -->
+<html lang="en" dir="ltr">
+<head>
+  <title>ToUpper-ToLower-ParsInt-ParseFloat</title>
+  <style type="text/css">
+	span {color:red;}
+	.green {color:green;}
+  </style>
+  <script type="text/javascript">
+	function toUpperCase() {    
+      var upper = document.getElementById("myText1").value;
+      document.getElementById("upper").innerHTML = upper.toUpperCase();
+    }
+	function toLowerCase() {
+      var lower = document.getElementById("myText2").value;
+      document.getElementById("lower").innerHTML = lower.toLowerCase();
+    }
+	function addition1() {
+      var g = document.getElementById("int").value;
+      var h = document.getElementById("int2").value;
+      document.getElementById("additionI").innerHTML = parseInt(g) + parseInt(h);
+	}
+	function addition2() {
+      var x = document.getElementById("float").value;
+      var y = document.getElementById("float2").value;
+      document.getElementById("additionF").innerHTML = parseFloat(x) + parseFloat(y);
+	}
+  </script>
+</head>
+<body>
+	<p>Your text in lower case: 
+	<input type="text" onchange="toUpperCase()" id="myText1" class="green" value="your text"> -> UPPERCASE: 
+	<input type="button" onclick="toUpperCase()" value="toUpperCase()" />
+	<span id="upper"></span></p>
+	<p>Your text in UPPERCASE: 
+	<input type="text" onchange="toLowerCase()" id="myText2" class="green" value="YOUR TEXT"> -> lowercase: 
+	<button onclick="toLowerCase()">toLowerCase()</button> 
+	<span id="lower"></span> </p>
+	<br><hr><br>
+	<p>Var1 (integer): 
+	<input type="number" onchange="addition1()" id="int" class="green" value="15"> + Var2 (integer): 
+	<input type="number" onchange="addition1()" id="int2" class="green" value="5.9">
+	<input type="button" onclick="addition1()" value="=" />
+	<span id="additionI"></span>
+	<p>Var1 (float): 
+	<input type="number" onchange="addition2()" id="float" class="green" value="15.4"> + Var2 (float): 
+	<input type="number" onchange="addition2()" id="float2" class="green" value="5.9"> 
+	<button onclick="addition2()">=</button> 
+	<span id="additionF"></span></p> 
+</body>
+</html> 
