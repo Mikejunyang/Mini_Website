@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Mike Jun Yang, Chiu Lim
+         Description: User identification (Page 1)
+           Date: 25/07/2023                 -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Information</title>
+        <script type="text/javascript" src="../Js/User IdentificationJS.js">
+        </script> 
+    </head>
+    <body onload="displayTimeOnLoad()">
+        <h1>User Information</h1>
+        <form action="User Identification page 2.html" method="get" onsubmit="validation()">
+          <fieldset id="Info">
+            <legend>Please Enter Your Information</legend>
+            First Name:&nbsp;<input type="text" name="FirstName" id="FName" size="25" maxlength="10" required><span id="error1"></span><br><br>
+            Last Name: &nbsp;<input type="text" name="LastName" id="LName" size="25" maxlength="10" required><span id="error2"></span><br><br>
+            Age: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" name="age" id="age" max="150" min="0" required><span id="error3"></span><br><br>
+            <label for="country">Country:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>   
+            <input list="con" name="country" id="country" size="25" maxlength="20" required><span id="error4"></span>      
+            <datalist id="con">
+                <option value="Canada">
+                <option value="USA">
+                <option value="Mexico">
+            </datalist><br><br>
+            <label for="SP">Province:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input list="Province" name="SP" id="SP" size="25" maxlength="20" required><span id="error5"></span>
+            <datalist id="Province">
+                <option value="Ontario">
+                <option value="Quebec">
+                <option value="Nova Scotia">
+                <option value="New Brunswick">
+                <option value="Manitoba">
+                <option value="British Columbia">
+                <option value="Prince Edward Island">
+                <option value="Saskatchewan">
+                <option value="Alberta">
+                <option value="Newfoundland and Labrador">
+            </datalist><br><br>
+            Postal Code:<input type="text" name="postal code" id="PCode" size="25" maxlength="10" required><span id="error6"></span><br><br>
+            Telephone:&nbsp;&nbsp; <input type="text" name="tel" id="tel" size="25" required><span id="error7"></span><br><br>
+            Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" id="email" size="25" maxlength="20" required><span id="error8"></span><br><br>
+            Start Time:<span id="STime"></span><br><br>
+            <input type="button" value="submit" onclick="validation()" >
+          </fieldset>
+        </form>
+    </body>
+
+</html>
