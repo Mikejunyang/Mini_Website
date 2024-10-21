@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Mike Jun Yang, Chiu Lim
+         Description: User identification (Page 2)
+           Date: 25/07/2023                 -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Information</title>
+        <style>
+           tr,td{
+            border: 1px solid black;
+           }
+        </style>
+        <script type="text/javascript" src="../Js/User IdentificationJS.js"></script>
+    </head>
+    <body onload="checkCookie2(); displaytimeSpend()">
+        <h1>User Information</h1>
+        <table style="border: 1px solid black;">
+            <tr>
+                <td>First Name</td>
+                <td id="FName"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td id="LName"></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td id="Age"></td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td id="Country"></td>
+            </tr>
+            <tr>
+                <td>Provice</td>
+                <td id="Province"></td>
+            </tr>
+            <tr>
+                <td>Postal Code</td>
+                <td id="Pcode"></td>
+            </tr>
+            <tr>
+                <td>Telephone</td>
+                <td id="Tel"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td id="Email"></td>
+            </tr>
+            <tr>
+                <td>Time Spend</td>
+                <td id="TimeSpend"></td>
+            </tr>
+        </table><br><br>
+
+        <button onclick="deleteCookie()">Delete</button>
+    </body>
+
+</html>
