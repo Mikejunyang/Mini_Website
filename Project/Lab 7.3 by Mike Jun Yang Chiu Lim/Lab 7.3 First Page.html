@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- Mike Jun Yang, Chiu Lim
+Description: Lab 7.3 (Cookie)
+Date: 04/07/2023 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Lab7.3 First Page</title>
+        <script type="text/javascript" >
+            let tot; //global variable
+   	        function displayAmount ()
+		    {
+			let price = document.getElementById("price").value;
+			try
+				{
+					if(price == "") throw "empty";
+					if(isNaN(price)) throw "not a number";
+					if(price < 3) throw "too low (3-230)";
+					if(price > 230) throw "too high (3-230)";
+          /* RegExp */
+					if(/^\d+(\.\d{0,2})?$/.test(price) == false)
+					{throw "not 1-3 digits with one or two decimals";}
+					else{
+					price = Number(price);
+					/* check for the values */
+					}
+				const gst = 0.05;
+				const qst = 0.09975;
+				var priceGst = (gst * price);
+				var priceQst = (qst * price);
+				var total = price + priceGst + priceQst;
+				tot = total.toFixed(2);
+				let price2 = price.toFixed(2);
+				}
+			catch (err)
+				{
+					alert("Input is " + err);
+				}
+			finally
+				{
+					var text = "<table>";
+					text += "<tr><td colspan='2'><div class='thead'><b>Example</b></div></td></tr>";
+					text += "<tr><td colspan='2'>You sell a taxable good for $" + price.toFixed(2) +". Taxes are calculated as follows:</td></tr>";
+					text += "<tr><td>Selling Price</td><td><span class='right'>$" + price.toFixed(2) + "</span></td></tr>";
+					text += "<tr><td>GST ($"+ price + " * 5%)</td><td><span class='right'>$" + priceGst.toFixed(2) + "</span></td></tr>";
+					text += "<tr><td>QST ($"+ price + " * 9.975%)</td><td><span class='right'>$" + priceQst.toFixed(2) + "</span></td></tr>";
+					text += "<tr><td><b>Total</b></td><td><span class='right'>$" + tot + "</span></td></tr>";
+					//text += "<tr><td><a href='lab_7.3.html' class='button'>Calculate banknotes and coins</a><td></tr>"
+					text += "</table>";
+					document.getElementById("displayTable").innerHTML = text;
+                    setCookie("totalPrice", tot, 10);
+				}
+		}
+
+	   
+        function setCookie(cname, cvalue, exdays){
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        } 
+
+        function getCookie(cname){
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i<ca.length; i++){
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
+    </script>
+
+    <style>
+        .header {
+        margin: 30px;
+        }
+        .container {
+        margin: auto;
+        }
+        table, td {
+        border: 1px solid #e6e6e6;
+        background-color: #cccccc;
+        }
+        .thead {
+        border-top: 1px solid gray;
+        }
+        .right {float:right;}
+        .header {margin: 30px;}
+        .container {margin: auto;}
+        table, td {
+        border: 1px solid #e6e6e6;
+        background-color: #cccccc;
+        }
+        .thead {
+        border-top: 1px solid gray;
+        }
+        a :hover{
+        color:magenta;
+        font-weight: bold;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Today Date: <span id="date"></span></h2>
+        </div>
+        <div class="container">
+            Input amount : <input type="text" name="price" id="price"/>
+            <button onclick="displayAmount()">Display Amount</button><br><br>
+            <div id="displayTable"></div>
+        </div>
+        <h1><a href="Lab 7.3 Second Page.html"  style="color: black;"><b><u>Second Page</u></b></a></h1>  
+        <script>
+            var myDate = new Date();
+            document.getElementById("date").innerHTML = myDate.toDateString();
+            setCookie("cdate", myDate.toDateString(), 10);
+        </script>
+    </body>
+</html>
