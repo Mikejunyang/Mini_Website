@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en">
+<head>
+  <!-- Mike Jun Yang, Chiu Lim 
+     Description: Lab 4.3 Top (Signed out)
+	 Date: 16.06.23                 -->
+   <title>Title goes here</title>
+   <script language="javascript" src="login.js"></script>
+   <style>
+    body{
+      background-color: deepskyblue;
+    }
+
+    table{
+	  width: 100%;
+    }
+   </style>
+</head>
+
+<body>
+<table border="1" cellpadding="5" cellspacing="5" width="412">
+      <tr>
+        <td><img src="img/Logo.jpg" alt="College LaSalle"></td>
+        <td style="color:blue; text-align: center;"><h1>WEB CLIENT DEVELOPMENT</h1></td>
+        <td valign="top" width="384">
+          <h1>Member Login</h1>
+              <form name="login_form" action="file.asp" method="get">
+              <table width="319">
+                  <tr>
+                    <td width="50">Username</td>
+                    <td width="255">
+	<input type="text" maxlength="10" name="username" id="uname" size="20"></td>
+                  </tr>
+                  <tr>
+                    <td width="50">Password</td>
+    <td width="255"><input maxlength="10" name="password" id="psw" size="20" type="password"></td>
+                  </tr>
+                  <tr>
+    <td colspan="2"><input type="button" value="login" name="authenticate" onclick="login()"></td>
+                  </tr>
+              </table>
+             </form>
+        </td>
+      </tr>
+  </table>
+</body>
+</html>
