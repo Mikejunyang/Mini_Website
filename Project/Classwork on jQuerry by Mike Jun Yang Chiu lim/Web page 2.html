@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Mike Jun Yang, Chiu Lim
+Description: Classwork on jQuerry part 2
+Date: 11/07/2023 -->
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("tr").click(function(){ 
+                $("tr:odd").hide();     // 1
+                });
+                $("th").click(function(){ 
+                $("td:odd").hide();     // 2
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>Company</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Berglunds snabbköp</td>
+                <td>Sweden</td>
+            </tr>
+            <tr>
+                <td>Centro comercial Moctezuma</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>Ernst Handel</td>
+                <td>Austria</td>
+            </tr>
+            <tr>
+                <td>Island Trading</td>
+                <td>UK</td>
+            </tr>
+        </table>
+    <br>
+        <!--<button type="button" onclick="hideOddRows()">Hide odd rows</button>
+        <button type="button" onclick="hideOddColumns()">Hide odd colums</button>-->
+    </body>
+</html>
